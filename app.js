@@ -50,52 +50,49 @@ async function generatePDF(curso, nombres, apellidos, email, direccion, telefono
     const image = await loadImage("formulario.jpg");
     const signatureImage = signaturePad.toDataURL();
 
-    const img = new Image();
-    img.src = image;
-    img.onload = function() {
-        const imgWidth = img.width;
-        const imgHeight = img.height;
+    // Establecer dimensiones específicas para el PDF
+    const pdfWidth = 1481;
+    const pdfHeight = 644;
 
-        const pdf = new jsPDF({
-            orientation: 'portrait',
-            unit: 'px',
-            format: [imgWidth, imgHeight]
-        });
+    const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [pdfWidth, pdfHeight]
+    });
 
-        pdf.addImage(image, 'PNG', 0, 0, imgWidth, imgHeight);
-        pdf.addImage(signatureImage, 'PNG', 200, 605, 300, 60);
+    pdf.addImage(image, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.addImage(signatureImage, 'PNG', 200, 605, 300, 60);
 
-        pdf.setFontSize(12);
-        pdf.text(curso, 260, 125);
+    pdf.setFontSize(12);
+    pdf.text(curso, 260, 125);
 
-        const date = new Date();
-        pdf.text(date.getUTCDate().toString(), 235, 150);
-        pdf.text((date.getUTCMonth() + 1).toString(), 275, 150);
-        pdf.text(date.getUTCFullYear().toString(), 320, 150);
+    const date = new Date();
+    pdf.text(date.getUTCDate().toString(), 235, 150);
+    pdf.text((date.getUTCMonth() + 1).toString(), 275, 150);
+    pdf.text(date.getUTCFullYear().toString(), 320, 150);
 
-        pdf.setFontSize(10);
-        pdf.text(nombres, 170, 213);
-        pdf.text(apellidos, 170, 200);
-        pdf.text(direccion, 170, 400);
-        pdf.text(telefono, 170, 456);
-        pdf.text(email, 170, 475);
+    pdf.setFontSize(10);
+    pdf.text(nombres, 170, 213);
+    pdf.text(apellidos, 170, 200);
+    pdf.text(direccion, 170, 400);
+    pdf.text(telefono, 170, 456);
+    pdf.text(email, 170, 475);
 
-        pdf.setFillColor(0, 0, 0);
+    pdf.setFillColor(0, 0, 0);
 
-        if (parseInt(hijos) === 0) {
-            pdf.circle(255, 374, 4, 'FD');
-        } else {
-            pdf.circle(190, 374, 4, 'FD');
-            pdf.text(numeroHijos.toString(), 355, 378);
-        }
+    if (parseInt(hijos) === 0) {
+        pdf.circle(255, 374, 4, 'FD');
+    } else {
+        pdf.circle(190, 374, 4, 'FD');
+        pdf.text(numeroHijos.toString(), 355, 378);
+    }
 
-        if (parseInt(discapacidad) === 0) {
-            pdf.circle(285, 718, 4, 'FD');
-        } else {
-            pdf.circle(240, 718, 4, 'FD');
-            pdf.text(discapacidadDesc, 350, 720);
-        }
+    if (parseInt(discapacidad) === 0) {
+        pdf.circle(285, 718, 4, 'FD');
+    } else {
+        pdf.circle(240, 718, 4, 'FD');
+        pdf.text(discapacidadDesc, 350, 720);
+    }
 
-        pdf.save("example.pdf");
-    };
+    pdf.save("example.pdf");
 }
