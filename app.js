@@ -50,14 +50,11 @@ async function generatePDF(curso, nombres, apellidos, email, direccion, telefono
     const image = await loadImage("formulario.jpg");
     const signatureImage = signaturePad.toDataURL();
 
-    // Establecer dimensiones específicas para el PDF
-    const pdfWidth = 1481;
-    const pdfHeight = 644;
 
     const pdf = new jsPDF({
-        orientation: 'portrait',
+        orientation: 'landscape',
         unit: 'px',
-        format: [pdfWidth, pdfHeight]
+        format: [1481, 644]
     });
 
     pdf.addImage(image, 'PNG', 0, 0);
