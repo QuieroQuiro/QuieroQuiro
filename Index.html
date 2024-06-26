@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generar PDF desde Formulario</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+
+<h2>Llenar datos para el PDF</h2>
+
+<form id="formulario">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre" required><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+  <button type="button" onclick="generarPDF()">Generar PDF</button>
+</form>
+
+<script>
+function generarPDF() {
+  // Obtener los datos del formulario
+  var nombre = document.getElementById('nombre').value;
+  var email = document.getElementById('email').value;
+
+  // Ruta al PDF preexistente
+  var pdfUrl = 'plantilla.pdf';
+
+  // Crear objeto jsPDF
+  var pdf = new jsPDF();
+
+  // Cargar el PDF preexistente
+  pdf.loadFile(pdfUrl, function () {
+    // Añadir texto y datos del formulario al PDF
+    pdf.setFontSize(12);
+    pdf.text('Nombre: ' + nombre, 20, 50);
+    pdf.text('Email: ' + email, 20, 60);
+
+    // Guardar y descargar el PDF modificado
+    pdf.save('plantilla_modificada.pdf');
+  });
+}
+</script>
+
+</body>
+</html>
