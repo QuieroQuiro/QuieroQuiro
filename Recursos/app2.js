@@ -41,7 +41,7 @@ async function generatePDF(fecha, numeroConsulta, signos, tratamiento, recomenda
     const pdf = new jsPDF({
         orientation: 'portrait', // Cambiado a orientación vertical
         unit: 'px',
-        format: [letter] // Cambiado al tamaño que mejor se ajuste a tu contenido
+        format: [1200, 800] // Cambiado al tamaño que mejor se ajuste a tu contenido
     });
 
     pdf.addImage(image, 'JPG', 0, 0);
