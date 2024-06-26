@@ -51,8 +51,8 @@ async function generatePDF(curso, nombres, apellidos, email, direccion, telefono
     const signatureImage = signaturePad.toDataURL();
 
     // Establecer dimensiones específicas para el PDF
-    const pdfWidth = 644;
-    const pdfHeight = 1481;
+    const pdfWidth = 1481px;
+    const pdfHeight = 644px;
 
     const pdf = new jsPDF({
         orientation: 'portrait',
