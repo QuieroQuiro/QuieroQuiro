@@ -38,7 +38,7 @@ async function generatePDF(nombre, fecha, numeroConsulta, signos, tratamiento, r
     const image = await loadImage("evo.jpg"); // Puedes cambiar "evo.jpg" por la URL de tu imagen
 
     const pdf = new jsPDF({
-        orientation: 'portrait', // Orientación vertical
+        orientation: 'landscape', // Orientación vertical
         unit: 'px',
         format: [1200, 800] // Tamaño del PDF ajustado
     });
