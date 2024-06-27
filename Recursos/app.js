@@ -40,7 +40,7 @@ async function generatePDF(nombre, fecha, numeroConsulta, signos, tratamiento, r
     const pdf1 = new jsPDF({
         orientation: 'landscape', // Orientación vertical
         unit: 'px',
-        format: [800, 1200] // Tamaño del PDF ajustado
+        format: [800, 1450] // Tamaño del PDF ajustado
     });
 
     pdf1.addImage(image, 'JPG', 0, 0);
