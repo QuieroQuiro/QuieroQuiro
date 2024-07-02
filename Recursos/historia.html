@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar PDF</title>
+    <link rel="stylesheet" href="estilo1.css"> <!-- Enlaza al archivo CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Incluir Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Incluir Select2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Ficha de Evolución</h1>
+        <form id="form">
+            
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" required>
+                <button type="button" onclick="setToday()">Hoy</button>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="apellidoPaterno">Apellido Paterno:</label>
+                <input type="text" id="apellidoPaterno" placeholder="Apellido paterno" required>
+            </div>
+
+            <div class="form-group">
+                <label for="apellidoMaterno">Apellido Materno:</label>
+                <input type="text" id="apellidoMaterno" placeholder="Apellido materno" required>
+            </div>
+
+            <div class="form-group">
+                <label for="entero">¿Cómo se enteró de nosotros?</label>
+                <select id="entero" class="js-select2" multiple required>
+                    <option value="Internet">Internet</option>
+                    <option value="Amigo">Un amigo</option>
+                    <option value="Publicidad">Publicidad</option>
+                    <option value="Otros">Otros</option>
+                </select>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+            
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" placeholder="Ingrese su edad" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="ocupacion">Ocupación:</label>
+                <input type="text" id="ocupacion" placeholder="Ingrese su ocupación" required>
+            </div>
+            
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="telefonoCelular">Teléfono Celular:</label>
+                <input type="tel" id="telefonoCelular" placeholder="Ingrese su teléfono celular">
+            </div>
+            
+            <div class="form-group">
+                <label for="telefonoCasa">Teléfono de Casa:</label>
+                <input type="tel" id="telefonoCasa" placeholder="Ingrese su teléfono de casa">
+            </div>
+            
+            <div class="form-group">
+                <label for="telefonoOficina">Teléfono de Oficina:</label>
+                <input type="tel" id="telefonoOficina" placeholder="Ingrese su teléfono de oficina">
+            </div>
+
+            <div class="form-group">
+                <label for="correoElectronico">Correo Electrónico:</label>
+                <input type="email" id="correoElectronico" placeholder="Ingrese su correo electrónico" required>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+        
+            <div class="form-group">
+                <label for="domicilio">Domicilio:</label>
+                <input type="text" id="domicilio" placeholder="Ingrese su domicilio" >
+            </div>
+
+            <div class="form-group">
+                <label for="calle">Calle:</label>
+                <input type="text" id="calle" placeholder="Ingrese el nombre de la calle" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="numero">No.:</label>
+                <input type="text" id="numero" placeholder="Número exterior o interior" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="colonia">Colonia:</label>
+                <input type="text" id="colonia" placeholder="Ingrese la colonia" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="delegacion">Delegación o Municipio:</label>
+                <input type="text" id="delegacion" placeholder="Ingrese la delegación o municipio" required>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="antecedentes">Antecedentes Heredofamiliares:</label>
+                <select id="antecedentes" class="js-select2" multiple >
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Cancer">Cáncer</option>
+                    <option value="Has">HAS</option>
+                    <option value="Cardiopatias">Cardiopatías</option>
+                    <option value="Obesidad">Obesidad</option>
+                    <option value="Desnutricion">Desnutrición</option>
+                    <option value="Alcoholismo">Alcoholismo</option>
+                    <option value="Drogadiccion">Drogadicción</option>
+                    <option value="Malformaciones">Malformaciones</option>
+                    <option value="Tuberculosis">Tuberculosis</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="quien">¿Quién de su familia lo presenta?:</label>
+                <select id="quien" class="js-select2" multiple >
+                    <option value="Padre">Padre</option>
+                    <option value="Madre">Madre</option>
+                    <option value="Hermano">Hermano</option>
+                    <option value="Hermana">Hermana</option>
+                    <option value="Tio">Tío</option>
+                    <option value="Tia">Tía</option>
+                    <option value="Abuelo">Abuelo</option>
+                    <option value="Abuela">Abuela</option>
+                </select>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="antecedentesPersonales">Antecedentes Personales Patológicos:</label>
+                <select id="antecedentesPersonales" class="js-select2" multiple>
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Cancer">Cáncer</option>
+                    <option value="Has">HAS</option>
+                    <option value="Cardiopatias">Cardiopatías</option>
+                    <option value="Obesidad">Obesidad</option>
+                    <option value="Desnutricion">Desnutrición</option>
+                    <option value="Alcoholismo">Alcoholismo</option>
+                    <option value="Drogadiccion">Drogadicción</option>
+                    <option value="Malformaciones">Malformaciones</option>
+                    <option value="Tuberculosis">Tuberculosis</option>
+                </select>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="menarca">Menarca:</label>
+                <input type="text" id="menarca" placeholder="Ingrese la edad de menarca" >
+            </div>
+
+            <div class="form-group">
+                <label for="ritmo">Ritmo:</label>
+                <input type="text" id="ritmo" placeholder="Ingrese el ritmo menstrual" >
+            </div>
+
+            <div class="form-group">
+                <label for="fum">FUM:</label>
+                <input type="date" id="fum" >
+            </div>
+
+            <div class="form-group">
+                <label for="gestas">Gestas:</label>
+                <input type="number" id="gestas" placeholder="Ingrese el número de gestas" >
+            </div>
+
+            <div class="form-group">
+                <label for="paras">Paras:</label>
+                <input type="number" id="paras" placeholder="Ingrese el número de paras" >
+            </div>
+
+            <div class="form-group">
+                <label for="cesarias">Cesáreas:</label>
+                <input type="number" id="cesarias" placeholder="Ingrese el número de cesáreas" >
+            </div>
+
+            <div class="form-group">
+                <label for="abortos">Abortos:</label>
+                <input type="number" id="abortos" placeholder="Ingrese el número de abortos" >
+            </div>
+
+            <div class="form-group">
+                <label for="papanicolau">Papanicolau:</label>
+                <input type="text" id="papanicolau" placeholder="Ingrese el resultado del papanicolau" >
+            </div>
+
+            <div class="form-group">
+                <label for="edadHijos">Edad de Hijos:</label>
+                <input type="text" id="edadHijos" placeholder="Ingrese la edad de los hijos" >
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="antecedentesTraumatologicos">Antecedentes Traumatológicos:</label>
+                <textarea id="antecedentesTraumatologicos" placeholder="Ingrese los antecedentes traumatológicos" rows="4" required></textarea>
+            </div>
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="motivoConsulta">Motivo de Consulta:</label>
+                <textarea id="motivoConsulta" placeholder="Ingrese el motivo de consulta" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="dondeDuele">¿Dónde te duele?</label>
+                <select id="dondeDuele" class="js-select2" multiple>
+                    <optgroup label="Cabeza">
+                        <option value="Cabeza_Delante">Cabeza (Delante)</option>
+                        <option value="Cabeza_Detras">Cabeza (Detrás)</option>
+                        <option value="Cabeza_Lateral_Derecha">Cabeza (Lateral Derecha)</option>
+                        <option value="Cabeza_Lateral_Izquierda">Cabeza (Lateral Izquierda)</option>
+                    </optgroup>
+                    <optgroup label="Cuello">
+                        <option value="Cuello_Delante">Cuello (Delante)</option>
+                        <option value="Cuello_Detras">Cuello (Detrás)</option>
+                        <option value="Cuello_Lateral_Derecho">Cuello (Lateral Derecho)</option>
+                        <option value="Cuello_Lateral_Izquierdo">Cuello (Lateral Izquierdo)</option>
+                    </optgroup>
+                    <optgroup label="Hombro">
+                        <option value="Hombro_Derecho">Hombro Derecho</option>
+                        <option value="Hombro_Izquierdo">Hombro Izquierdo</option>
+                    </optgroup>
+                    <optgroup label="Espalda">
+                        <option value="Espalda_Alta">Espalda Alta</option>
+                        <option value="Espalda_Media">Espalda Media</option>
+                        <option value="Espalda_Baja">Espalda Baja</option>
+                        <option value="Columna_Vertebral">Columna Vertebral</option>
+                    </optgroup>
+                    <optgroup label="Brazo">
+                        <option value="Brazo_Derecho">Brazo Derecho</option>
+                        <option value="Brazo_Izquierdo">Brazo Izquierdo</option>
+                    </optgroup>
+                    <optgroup label="Pierna">
+                        <option value="Pierna_Derecha">Pierna Derecha</option>
+                        <option value="Pierna_Izquierda">Pierna Izquierda</option>
+                    </optgroup>
+                    <optgroup label="Pies">
+                        <option value="Pie_Derecho">Pie Derecho</option>
+                        <option value="Pie_Izquierdo">Pie Izquierdo</option>
+                    </optgroup>
+                    <!-- Agrega más grupos y opciones según las partes del cuerpo y ubicaciones -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="intensidadDolor">¿Qué tan intenso es el dolor?</label>
+                <select id="intensidadDolor" class="js-select2" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="factoresDolor">Factores que causan, alivian o aumentan el dolor</label>
+                <textarea id="factoresDolor" class="form-control" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="interrogatorioSistemas">Interrogatorio por aparatos y sistemas</label>
+                <textarea id="interrogatorioSistemas" class="form-control" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="exploracionFisica">Exploración física</label>
+                <textarea id="exploracionFisica" class="form-control" rows="3" required></textarea>
+            </div>
+            
+
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="peso">Peso</label>
+                <input type="text" id="peso" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="talla">Talla</label>
+                <input type="text" id="talla" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="frecuenciaCardiaca">Frecuencia Cardíaca</label>
+                <input type="text" id="frecuenciaCardiaca" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="frecuenciaRespiratoria">Frecuencia Respiratoria</label>
+                <input type="text" id="frecuenciaRespiratoria" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="presionArterial">Presión Arterial</label>
+                <input type="text" id="presionArterial" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="temperatura">Temperatura</label>
+                <input type="text" id="temperatura" class="form-control" required>
+            </div>
+            
+            <!-- -------------------------------------------------------------- -->
+
+            <div class="form-group">
+                <label for="cervicales">Cervicales</label>
+                <select id="cervicales" class="js-select2" multiple>
+                    <option value="Flexion">Flexión</option>
+                    <option value="Extension">Extensión</option>
+                    <option value="Rotacion_Izquierda">Rotación Izquierda</option>
+                    <option value="Rotacion_Derecha">Rotación Derecha</option>
+                    <option value="Flexion_Lateral_Izquierda">Flexión Lateral Izquierda</option>
+                    <option value="Flexion_Lateral_Derecha">Flexión Lateral Derecha</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dorsales">Dorsales</label>
+                <select id="dorsales" class="js-select2" multiple>
+                    <option value="Flexion">Flexión</option>
+                    <option value="Extension">Extensión</option>
+                    <option value="Rotacion_Izquierda">Rotación Izquierda</option>
+                    <option value="Rotacion_Derecha">Rotación Derecha</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="lumbares">Lumbares</label>
+                <select id="lumbares" class="js-select2" multiple>
+                    <option value="Flexion">Flexión</option>
+                    <option value="Extension">Extensión</option>
+                    <option value="Rotacion_Izquierda">Rotación Izquierda</option>
+                    <option value="Rotacion_Derecha">Rotación Derecha</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reflejos">Reflejos</label>
+                <select id="reflejos" class="js-select2" multiple>
+                    <option value="Biceps">Bíceps</option>
+                    <option value="Triceps">Tríceps</option>
+                    <option value="Braquiorradial">Braquiorradial</option>
+                    <option value="Patelar">Patelar</option>
+                    <option value="Aquileo">Aquileo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fuerzaMuscular">Fuerza Muscular</label>
+                <select id="fuerzaMuscular" class="js-select2" multiple>
+                    <option value="Biceps">Bíceps</option>
+                    <option value="Triceps">Tríceps</option>
+                    <option value="Deltoides">Deltoides</option>
+                    <option value="Cuadriceps">Cuádriceps</option>
+                    <option value="Biceps_Femoral">Bíceps Femoral</option>
+                    <option value="Pantorrillas">Pantorrillas</option>
+                </select>
+            </div>
+            
+            <!-- -------------------------------------------------------------- -->
+            <h4>Cervicales</h4>
+
+            <div class="form-group">
+                <label for="comprensionCervical">Comprensión Cervical</label>
+                <select id="comprensionCervical" class="js-select2" required>
+                    <option value="Comprension_Cervical_Pos">Positivo</option>
+                    <option value="Comprension_Cervical_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comprensionCervical">Comprensión Cervical</label>
+                <select id="comprensionCervical" class="js-select2" required>
+                    <option value="Comprension_Cervical_Pos">Positivo</option>
+                    <option value="Comprension_Cervical_Neg">Negativo</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="depresionHombro">Depresión de Hombro</label>
+                <select id="depresionHombro" class="js-select2" required>
+                    <option value="Depresion_Hombro_Pos">Positivo</option>
+                    <option value="Depresion_Hombro_Neg">Negativo</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="valsalva">Valsalva</label>
+                <select id="valsalva" class="js-select2" required>
+                    <option value="Valsalva_Pos">Positivo</option>
+                    <option value="Valsalva_Neg">Negativo</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="examenGeorge">Examen de George</label>
+                <select id="examenGeorge" class="js-select2" required>
+                    <option value="Examen_George_Pos">Positivo</option>
+                    <option value="Examen_George_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <h4>Dorso-Lumbares</h4>
+
+            <div class="form-group">
+                <label for="posicionAdams">Posición de Adams</label>
+                <select id="posicionAdams" class="js-select2" required>
+                    <option value="Posicion_de_Adams_Pos">Positivo</option>
+                    <option value="Posicion_de_Adams_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="slr">SLR (Straight Leg Raise)</label>
+                <select id="slr" class="js-select2" required>
+                    <option value="SLR_Pos">Positivo</option>
+                    <option value="SLR_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="kemps">Kemp's</label>
+                <select id="kemps" class="js-select2" required>
+                    <option value="Kemps_Pos">Positivo</option>
+                    <option value="Kemps_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nachlas">Nachlas</label>
+                <select id="nachlas" class="js-select2" required>
+                    <option value="Nachlas_Pos">Positivo</option>
+                    <option value="Nachlas_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="traccionFemoral">Tracción Femoral</label>
+                <select id="traccionFemoral" class="js-select2" required>
+                    <option value="Traccion_Femoral_Pos">Positivo</option>
+                    <option value="Traccion_Femoral_Neg">Negativo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="revisionRadiografica">Revisión Radiográfica</label>
+                <textarea id="revisionRadiografica" class="form-control" rows="4" placeholder="Ingrese aquí la revisión radiográfica"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="diagnosticof">Diagnóstico</label>
+                <textarea id="diagnosticof" class="form-control" rows="4" placeholder="Ingrese aquí el diagnóstico"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="pronostico">Pronóstico y Tratamiento</label>
+                <textarea id="pronostico" class="form-control" rows="4" placeholder="Ingrese aquí el pronóstico y tratamiento"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="faseSintomatologica">Fase Sintomática</label>
+                <textarea id="faseSintomatologica" class="form-control" rows="4" placeholder="Ingrese aquí la fase sintomática"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="faseCorrectiva">Fase Correctiva</label>
+                <textarea id="faseCorrectiva" class="form-control" rows="4" placeholder="Ingrese aquí la fase correctiva"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Generar PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app2.js"></script>
+</body>
+</html>

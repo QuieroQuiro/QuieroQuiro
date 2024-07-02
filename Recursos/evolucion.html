@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar PDF</title>
+    <link rel="stylesheet" href="estilo1.css"> <!-- Enlaza al archivo CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Ficha de Evolución</h1>
+        <form id="form">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Ingrese su nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" required>
+                <!-- Agregar botón para establecer la fecha de hoy -->
+                <button type="button" onclick="setToday()">Hoy</button>
+            </div>
+
+            <div class="form-group">
+                <label for="numeroConsulta">Número de Consulta:</label>
+                <select id="numeroConsulta" required>
+                    <option value="1ra consulta">1ra consulta</option>
+                    <option value="2da consulta">2da consulta</option>
+                    <!-- Opciones restantes del select -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="signos">Signos:</label>
+                <textarea id="signos" placeholder="Ingrese los signos" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tratamiento">Tratamiento:</label>
+                <textarea id="tratamiento" placeholder="Ingrese el tratamiento" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="recomendaciones">Recomendaciones:</label>
+                <textarea id="recomendaciones" placeholder="Ingrese las recomendaciones" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="diagnostico">Diagnóstico:</label>
+                <textarea id="diagnostico" placeholder="Ingrese el diagnóstico" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Generar PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app1.js"></script>
+</body>
+</html>
